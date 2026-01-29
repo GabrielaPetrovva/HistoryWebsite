@@ -1,0 +1,273 @@
+/* === HERO СЕКЦИЯ НА ЛИЧНОСТТА === */
+.person-hero {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+    overflow: hidden;
+}
+
+.person-hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.35;
+    z-index: 1;
+}
+
+.person-hero-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, 
+        rgba(245, 241, 232, 0.3) 0%, 
+        rgba(245, 241, 232, 0.7) 60%,
+        rgba(245, 241, 232, 0.95) 100%);
+}
+
+.person-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 100px 30px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.person-title {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
+}
+
+.person-subtitle {
+    font-size: 1.5rem;
+    color: #8b6f47;
+    font-weight: 500;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+}
+
+.person-dates {
+    font-size: 1.15rem;
+    color: #4a4a4a;
+    font-style: italic;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* Останалите стилове остават същите... */
+
+/* === ОСНОВНО СЪДЪРЖАНИЕ === */
+.article-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 30px 80px;
+}
+
+.article-intro {
+    font-size: 1.3rem;
+    line-height: 1.9;
+    color: #2a2a2a;
+    margin-bottom: 50px;
+    padding: 30px;
+    background-color: rgba(234, 227, 210, 0.3);
+    border-left: 4px solid #8b6f47;
+    font-style: italic;
+}
+
+.article-section {
+    margin-bottom: 50px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.article-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 24px;
+    color: #1a1a1a;
+    border-bottom: 2px solid #e5ddc8;
+    padding-bottom: 12px;
+}
+
+.article-text {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #2a2a2a;
+    margin-bottom: 20px;
+}
+
+.article-text:last-child {
+    margin-bottom: 0;
+}
+
+/* === ВРЕМЕВА ЛИНИЯ === */
+.timeline {
+    margin: 60px 0;
+    padding: 40px 30px;
+    background-color: rgba(234, 227, 210, 0.2);
+    border-radius: 8px;
+}
+
+.timeline-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    color: #1a1a1a;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e5ddc8;
+}
+
+.timeline-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.timeline-year {
+    flex-shrink: 0;
+    width: 100px;
+    font-family: 'Palatino', 'Book Antiqua', 'Georgia', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #8b6f47;
+}
+
+.timeline-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+}
+
+.timeline-content p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #3a3a3a;
+}
+
+/* === СВЪРЗАНИ ЛИЧНОСТИ === */
+.related-section {
+    margin-top: 80px;
+    padding-top: 60px;
+    border-top: 3px solid #d4c5a9;
+}
+
+.related-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #1a1a1a;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.related-card {
+    background-color: #fefdfb;
+    border: 1px solid #e5ddc8;
+    border-radius: 6px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(139, 111, 71, 0.15);
+    border-color: #8b6f47;
+}
+
+.related-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+}
+
+.related-card .period {
+    font-size: 0.95rem;
+    color: #8b6f47;
+    margin-bottom: 12px;
+}
+
+.related-card p {
+    font-size: 1rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .person-hero {
+        min-height: 350px;
+    }
+
+    .person-hero-content {
+        padding: 60px 20px 30px;
+    }
+
+    .person-title {
+        font-size: 2.2rem;
+    }
+
+    .person-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .person-dates {
+        font-size: 1rem;
+    }
+
+    .article-container {
+        padding: 0 20px 60px;
+    }
+
+    .article-intro {
+        font-size: 1.15rem;
+        padding: 20px;
+    }
+
+    .article-text {
+        font-size: 1.05rem;
+    }
+
+    .timeline {
+        padding: 30px 20px;
+    }
+
+    .timeline-item {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .timeline-year {
+        width: auto;
+    }
+
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+}

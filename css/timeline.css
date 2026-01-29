@@ -1,0 +1,261 @@
+/* === TIMELINE HERO === */
+.timeline-hero {
+    position: relative;
+    text-align: center;
+    padding: 120px 30px 60px;
+}
+
+.timeline-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/shipka.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.25;
+    z-index: 0;
+}
+
+.timeline-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(234, 227, 210, 0.3), rgba(245, 241, 232, 0));
+    z-index: 1;
+}
+
+.timeline-hero h1,
+.timeline-hero p {
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 16px;
+}
+
+.timeline-hero p {
+    font-size: 1.2rem;
+    color: #4a4a4a;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* === ВИЗУАЛНА ВРЕМЕВА ЛИНИЯ === */
+.visual-timeline {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 30px;
+    position: relative;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, 
+        #d4c5a9 0%, 
+        #8b6f47 50%, 
+        #d4c5a9 100%);
+    transform: translateX(-50%);
+}
+
+.timeline-event {
+    position: relative;
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.timeline-event.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-event:nth-child(odd) .event-content {
+    margin-left: 0;
+    margin-right: 55%;
+    text-align: right;
+}
+
+.timeline-event:nth-child(even) .event-content {
+    margin-left: 55%;
+    margin-right: 0;
+    text-align: left;
+}
+
+.event-marker {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: #8b6f47;
+    border: 4px solid #f5f1e8;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.timeline-event:hover .event-marker {
+    width: 28px;
+    height: 28px;
+    background-color: #6b5337;
+}
+
+.event-content {
+    background-color: #fefdfb;
+    padding: 28px;
+    border: 1px solid #e5ddc8;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.event-content:hover {
+    border-color: #8b6f47;
+    box-shadow: 0 8px 24px rgba(139, 111, 71, 0.15);
+    transform: translateY(-4px);
+}
+
+.event-year {
+    font-family: 'Palatino', 'Book Antiqua', 'Georgia', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #8b6f47;
+    margin-bottom: 8px;
+}
+
+.event-title {
+    font-family: 'Palatino', 'Book Antiqua', 'Georgia', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+}
+
+.event-description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #3a3a3a;
+    margin-bottom: 16px;
+}
+
+.event-category {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: rgba(139, 111, 71, 0.1);
+    color: #8b6f47;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* === ERA SECTIONS === */
+.era-divider {
+    text-align: center;
+    margin: 100px 0 60px;
+    position: relative;
+}
+
+.era-divider::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 80%;
+    height: 1px;
+    background-color: #d4c5a9;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.era-title {
+    display: inline-block;
+    padding: 12px 32px;
+    background-color: #f5f1e8;
+    font-family: 'Palatino', 'Book Antiqua', 'Georgia', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #8b6f47;
+    position: relative;
+    z-index: 2;
+    border: 2px solid #d4c5a9;
+    border-radius: 50px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .timeline-hero {
+        padding: 60px 20px 40px;
+    }
+
+    .timeline-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .timeline-hero p {
+        font-size: 1.05rem;
+    }
+
+    .visual-timeline {
+        padding: 0 20px;
+    }
+
+    .timeline-line {
+        left: 30px;
+    }
+
+    .timeline-event {
+        margin-bottom: 50px;
+    }
+
+    .timeline-event:nth-child(odd) .event-content,
+    .timeline-event:nth-child(even) .event-content {
+        margin-left: 60px;
+        margin-right: 0;
+        text-align: left;
+    }
+
+    .event-marker {
+        left: 30px;
+    }
+
+    .event-content {
+        padding: 20px;
+    }
+
+    .event-year {
+        font-size: 1.4rem;
+    }
+
+    .event-title {
+        font-size: 1.3rem;
+    }
+
+    .event-description {
+        font-size: 1rem;
+    }
+
+    .era-divider {
+        margin: 60px 0 40px;
+    }
+
+    .era-title {
+        font-size: 1.1rem;
+        padding: 10px 24px;
+    }
+}

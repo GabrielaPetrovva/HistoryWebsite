@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Теми | Живата история на България</title>
+    
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/themes.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Историята отблизо</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Начало</a></li>
+                <li><a href="catalog.html">Личности</a></li>
+                <li><a href="themes.html">Теми</a></li>
+                <li><a href="timeline.html">Хронология</a></li>
+                <li><a href="about.html">За нас</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="menuToggle">☰</button>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Исторически теми</h1>
+            <p class="page-subtitle">Открийте българската история през темите, които я оформят</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="search-filter-section">
+            <div class="search-container">
+                <input type="text" class="search-box" id="themeSearch" placeholder="Търсете тема...">
+            </div>
+            
+            <div class="filter-group">
+                <label class="filter-label">Филтрирай по период:</label>
+                <select class="period-filter" id="periodFilter">
+                    <option value="all">Всички периоди</option>
+                    <option value="ancient">Древна България (681-1018)</option>
+                    <option value="medieval">Средновековие (1185-1396)</option>
+                    <option value="ottoman">Османско владичество (1396-1878)</option>
+                    <option value="modern">Възраждане и освобождение (1762-1878)</option>
+                    <option value="contemporary">Нова история (1878-днес)</option>
+                </select>
+            </div>
+        </div>
+
+        <section class="themes-grid">
+            <!-- Културни и образователни теми -->
+            <article class="theme-card" data-period="ancient medieval">
+                <div class="theme-icon">📚</div>
+                <h2 class="theme-title">Книжовност и просвета</h2>
+                <p class="theme-description">От създаването на кирилицата до разцвета на Преславската и Търновската книжовни школи</p>
+                <div class="theme-meta">
+                    <span class="theme-period">IX-XIV век</span>
+                    <span class="theme-count">12 личности</span>
+                </div>
+                <a href="theme-detail.html?id=literature" class="theme-link">Разгледай темата →</a>
+            </article>
+
+            <!-- Военни и политически теми -->
+            <article class="theme-card" data-period="ancient medieval">
+                <div class="theme-icon">⚔️</div>
+                <h2 class="theme-title">Войни и завоевания</h2>
+                <p class="theme-description">Битките, които оформиха границите и съдбата на българската държава</p>
+                <div class="theme-meta">
+                    <span class="theme-period">VII-XIV век</span>
+                    <span class="theme-count">18 личности</span>
+                </div>
+                <a href="theme-detail.html?id=wars" class="theme-link">Разгледай темата →</a>
+            </article>
+
+            <!-- Религиозни теми -->
+            <article class="theme-card" data-period="ancient medieval">
+                <div class="theme-icon">⛪</div>
+                <h2 class="theme-title">Покръстване и вяра</h2>
+                <p class="theme-description">Приемането на християнството и неговото влияние върху българската култура</p>
+                <div class="theme-meta">
+                    <span class="theme-period">IX-XIV век</span>
+                    <span class="theme-count">8 личности</span>
+                </div>
+                <a href="theme-detail.html?id=christianity" class="theme-link">Разгледай темата →</a>
+            </article>
+
+            <!-- Възраждане -->
+            <article class="theme-card" data-period="modern">
+                <div class="theme-icon">🕊️</div>
+                <h2 class="theme-title">Национално възраждане</h2>
+                <p class="theme-description">Борбата за културна и политическа независимост през XVIII и XIX век</p>
+                <div class="theme-meta">
+                    <span class="theme-period">1762-1878</span>
+                    <span class="theme-count">24 личности</span>
+                </div>
+                <a href="theme-detail.html?id=revival" class="theme-link">Разгледай темата →</a>
+            </article>
+
+            <!-- Революционна дейност -->
+            <article class="theme-card" data-period="modern">
+                <div class="theme-icon">🔥</div>
+                <h2 class="theme-title">Революционна борба</h2>
+                <p class="theme-description">Четническото движение, комитетите и Априлското въстание</p>
+                <div class="theme-meta">
+                    <span class="theme-period">1850-1878</span>
+                    <span class="theme-count">15 личности</span>
+                </div>
+                <a href="theme-detail.html?id=revolution" class="theme-link">Разгледай темата →</a>
+            </article>
+
+            <!-- Образование и просвета -->
+            <article class="theme-card" data-period="modern contemporary">
+                <div class="theme-icon">🎓</div>
+                <h2 class="theme-title">Образование и училища</h2>
+                <p class="theme-description">Развитието на българското образование от килийните училища до съвременността</p>
+                <div class="theme-meta">
+                    <span class="theme-period">XVIII-XX век</span>
+                    <span class="theme-count">10 личности</span>
+                </div>
+                <a href="theme-detail.html?id=education" class="theme-link">Разгледай темата →</a>
+            </article>
+
+            <!-- Изкуство и архитектура -->
+            <article class="theme-card" data-period="medieval modern">
+                <div class="theme-icon">🎨</div>
+                <h2 class="theme-title">Изкуство и архитектура</h2>
+                <p class="theme-description">Майсторите, които изградиха и украсиха българските църкви и градове</p>
+                <div class="theme-meta">
+                    <span class="theme-period">X-XIX век</span>
+                    <span class="theme-count">14 личности</span>
+                </div>
+                <a href="theme-detail.html?id=art" class="theme-link">Разгледай темата →</a>
+            </article>
+
+            <!-- Дипломация -->
+            <article class="theme-card" data-period="ancient medieval contemporary">
+                <div class="theme-icon">🤝</div>
+                <h2 class="theme-title">Дипломация и съюзи</h2>
+                <p class="theme-description">Политическите отношения на България с Византия, Европа и съседните държави</p>
+                <div class="theme-meta">
+                    <span class="theme-period">VII-XX век</span>
+                    <span class="theme-count">16 личности</span>
+                </div>
+                <a href="theme-detail.html?id=diplomacy" class="theme-link">Разгледай темата →</a>
+            </article>
+
+            <!-- Съпротива -->
+            <article class="theme-card" data-period="ottoman">
+                <div class="theme-icon">🛡️</div>
+                <h2 class="theme-title">Съпротива и въстания</h2>
+                <p class="theme-description">Опитите за освобождение и възстановяване на българската държава</p>
+                <div class="theme-meta">
+                    <span class="theme-period">XV-XIX век</span>
+                    <span class="theme-count">11 личности</span>
+                </div>
+                <a href="theme-detail.html?id=resistance" class="theme-link">Разгледай темата →</a>
+            </article>
+
+            <!-- Жени в историята -->
+            <article class="theme-card" data-period="ancient medieval modern">
+                <div class="theme-icon">👑</div>
+                <h2 class="theme-title">Жени в историята</h2>
+                <p class="theme-description">Царици, светици и революционерки, които оставиха своя отпечатък</p>
+                <div class="theme-meta">
+                    <span class="theme-period">IX-XX век</span>
+                    <span class="theme-count">9 личности</span>
+                </div>
+                <a href="theme-detail.html?id=women" class="theme-link">Разгледай темата →</a>
+            </article>
+
+            <!-- Икономика и занаяти -->
+            <article class="theme-card" data-period="medieval modern">
+                <div class="theme-icon">⚒️</div>
+                <h2 class="theme-title">Икономика и занаяти</h2>
+                <p class="theme-description">Търговията, занаятчиите и икономическото развитие на българските земи</p>
+                <div class="theme-meta">
+                    <span class="theme-period">XIII-XIX век</span>
+                    <span class="theme-count">7 личности</span>
+                </div>
+                <a href="theme-detail.html?id=economy" class="theme-link">Разгледай темата →</a>
+            </article>
+
+            <!-- Обединение -->
+            <article class="theme-card" data-period="contemporary">
+                <div class="theme-icon">🇧🇬</div>
+                <h2 class="theme-title">Обединение и държавност</h2>
+                <p class="theme-description">Изграждането на модерната българска държава след Освобождението</p>
+                <div class="theme-meta">
+                    <span class="theme-period">1878-1912</span>
+                    <span class="theme-count">13 личности</span>
+                </div>
+                <a href="theme-detail.html?id=unification" class="theme-link">Разгледай темата →</a>
+            </article>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>За проекта</h3>
+                <p>Образователна платформа, посветена на българската история — разказана чрез хората, които я създадоха. Без учебникарска тежест, с разказвателна дълбочина.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Изследвайте</h3>
+                <ul class="footer-links">
+                    <li><a href="catalog.html">Личности</a></li>
+                    <li><a href="themes.html">Теми</a></li>
+                    <li><a href="timeline.html">Хронология</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Информация</h3>
+                <ul class="footer-links">
+                    <li><a href="about.html">За нас</a></li>
+                    <li><a href="#">Контакти</a></li>
+                    <li><a href="#">Методология</a></li>
+                    <li><a href="#">Източници</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Живата история на България. Всички права запазени.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/themes.js"></script>
+
+</body>
+</html>

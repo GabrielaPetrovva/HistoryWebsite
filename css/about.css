@@ -1,0 +1,138 @@
+.about-hero {
+    position: relative;
+    text-align: center;
+    padding: 120px 30px 60px;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/logo.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.25;
+    z-index: 0;
+}
+
+.about-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(234, 227, 210, 0.3), rgba(245, 241, 232, 0));
+    z-index: 1;
+}
+
+.about-hero h1,
+.about-hero p {
+    position: relative;
+    z-index: 2;
+}
+
+        .about-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .about-hero p {
+            font-size: 1.2rem;
+            color: #4a4a4a;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 30px 80px;
+        }
+
+        .about-section {
+            margin-bottom: 60px;
+        }
+
+        .about-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            border-bottom: 2px solid #e5ddc8;
+            padding-bottom: 12px;
+        }
+
+        .about-section p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #2a2a2a;
+            margin-bottom: 20px;
+        }
+
+        .mission-box {
+            background-color: rgba(234, 227, 210, 0.3);
+            padding: 30px;
+            border-left: 4px solid #8b6f47;
+            margin: 40px 0;
+        }
+
+        .mission-box h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: #8b6f47;
+        }
+
+        .mission-box p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #2a2a2a;
+            margin: 0;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .principle-card {
+            background-color: #fefdfb;
+            padding: 24px;
+            border: 1px solid #e5ddc8;
+            border-radius: 6px;
+        }
+
+        .principle-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+        }
+
+        .principle-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #4a4a4a;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .about-hero {
+                padding: 60px 20px 40px;
+            }
+
+            .about-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .about-container {
+                padding: 40px 20px 60px;
+            }
+
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+        }

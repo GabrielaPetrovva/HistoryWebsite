@@ -1,0 +1,232 @@
+/* === ОБЩИ СТИЛОВЕ === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background-color: #f5f1e8;
+    color: #2a2a2a;
+    line-height: 1.7;
+    padding-top: 70px;
+}
+
+/* === NAVIGATION BAR === */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(245, 241, 232, 0.97);
+    border-bottom: 1px solid #d4c5a9;
+    padding: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: 'Palatino', 'Book Antiqua', 'Georgia', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-decoration: none;
+    letter-spacing: -0.3px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #4a4a4a;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: #8b6f47;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #8b6f47;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #4a4a4a;
+    cursor: pointer;
+}
+
+/* === FOOTER === */
+footer {
+    background-color: #eae3d2;
+    margin-top: 80px;
+    padding: 50px 30px 30px;
+    border-top: 2px solid #d4c5a9;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3 {
+    font-family: 'Palatino', 'Book Antiqua', 'Georgia', serif;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+}
+
+.footer-section p {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #4a4a4a;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #8b6f47;
+}
+
+.footer-bottom {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 30px;
+    border-top: 1px solid #d4c5a9;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* === ТИПОГРАФИЯ === */
+h1 {
+    font-family: 'Palatino', 'Book Antiqua', 'Georgia', serif;
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-family: 'Palatino', 'Book Antiqua', 'Georgia', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+}
+
+h3 {
+    font-family: 'Palatino', 'Book Antiqua', 'Georgia', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+}
+
+/* === АНИМАЦИИ === */
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+    }
+
+    .nav-container {
+        padding: 14px 20px;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: rgba(245, 241, 232, 0.98);
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        border-bottom: 1px solid #d4c5a9;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+}

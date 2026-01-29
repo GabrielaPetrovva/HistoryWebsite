@@ -1,0 +1,326 @@
+/* === HERO SECTION === */
+.hero-section {
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 80px;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/header-background.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.25;
+    z-index: 1;
+}
+
+.hero-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, 
+        rgba(245, 241, 232, 0.3) 0%, 
+        rgba(245, 241, 232, 0.7) 50%,
+        rgba(245, 241, 232, 0.95) 100%);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 30px 60px;
+}
+
+header {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 80px 30px;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: #3a3a3a;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 50px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+/* === HERO BUTTON === */
+.hero-cta {
+    margin-top: 40px;
+}
+
+.hero-button {
+    display: inline-block;
+    padding: 18px 40px;
+    background-color: #8b6f47;
+    color: #fefdfb;
+    text-decoration: none;
+    border-radius: 80px;
+    font-size: 1.15rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(139, 111, 71, 0.2);
+}
+
+.hero-button:hover {
+    background-color: #6b5337;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 111, 71, 0.3);
+}
+
+.hero-button:active {
+    transform: translateY(0);
+}
+
+/* === FIGURES SECTION === */
+.figures-section {
+    margin-top: 60px;
+}
+
+.section-intro {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+/* === WELCOME SECTION === */
+.welcome-section {
+    max-width: 700px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+.welcome-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 24px;
+    color: #1a1a1a;
+}
+
+.welcome-section p {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: #3a3a3a;
+    margin-bottom: 20px;
+}
+
+/* === CTA SECTION WRAPPER === */
+.cta-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* === CTA CARDS === */
+.cta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.cta-card {
+    background-color: #fefdfb;
+    padding: 40px 30px;
+    border: 2px solid #e5ddc8;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    width: rem;
+}
+
+.cta-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cta-card:hover {
+    transform: translateY(-8px);
+    border-color: #8b6f47;
+    box-shadow: 0 12px 30px rgba(139, 111, 71, 0.2);
+}
+
+.cta-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.cta-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+}
+
+.cta-card p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: #8b6f47;
+    color: #fefdfb;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #6b5337;
+    transform: scale(1.05);
+}
+
+/* === FEATURED HIGHLIGHT === */
+.featured-highlight {
+    background: linear-gradient(135deg, rgba(139, 111, 71, 0.08) 0%, rgba(234, 227, 210, 0.3) 100%);
+    padding: 50px 40px;
+    border-radius: 12px;
+    margin: 60px 0;
+    border-left: 5px solid #8b6f47;
+}
+
+.featured-highlight h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+}
+
+.featured-highlight p {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #3a3a3a;
+    margin-bottom: 24px;
+}
+
+.featured-highlight .cta-button {
+    margin-top: 10px;
+}
+
+.figure-item {
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #e5ddc8;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.figure-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.figure-item:last-child {
+    border-bottom: none;
+}
+
+.figure-item:hover {
+    cursor: pointer;
+}
+
+.figure-item:hover .figure-name {
+    color: #8b6f47;
+}
+
+.figure-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    margin-bottom: 24px;
+    border-radius: 4px;
+    opacity: 0.92;
+    transition: opacity 0.3s ease;
+}
+
+.figure-item:hover .figure-image {
+    opacity: 1;
+}
+
+.figure-name {
+    font-family: 'Palatino', 'Book Antiqua', 'Georgia', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.figure-period {
+    font-size: 1rem;
+    color: #8b6f47;
+    margin-bottom: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.figure-description {
+    font-size: 1.1rem;
+    color: #3a3a3a;
+    line-height: 1.8;
+    max-width: 700px;
+}
+
+.scroll-indicator {
+    text-align: center;
+    margin-top: 40px;
+    opacity: 0.5;
+    font-size: 0.9rem;
+    color: #999;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px 40px;
+    }
+
+    .hero-section {
+        min-height: 400px;
+    }
+
+    header {
+        padding: 60px 20px;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .figure-name {
+        font-size: 1.6rem;
+    }
+
+    .cta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-highlight {
+        padding: 30px 24px;
+    }
+}
