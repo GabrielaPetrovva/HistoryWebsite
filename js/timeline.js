@@ -1,57 +1,82 @@
-// === TIMELINE FUNCTIONALITY ===
+// ===============================
+// TIMELINE FUNCTIONALITY (FIXED)
+// ===============================
 
-document.addEventListener('DOMContentLoaded', () => {
-    initTimelineAnimations();
-    initTimelineFilters();
+document.addEventListener("DOMContentLoaded", () => {
+  initTimelineAnimations();
+  initTimelineFilters();
+  initEventExpansion();
 });
 
-// === SCROLL ANIMATIONS ===
+// ===============================
+// SCROLL ANIMATIONS
+// ===============================
 function initTimelineAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -100px 0px"
+  };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, observerOptions);
-
-    // Наблюдаваме всички timeline събития
-    document.querySelectorAll('.timeline-event').forEach(event => {
-        observer.observe(event);
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
     });
+  }, observerOptions);
+
+  document.querySelectorAll(".timeline-event").forEach(event => {
+    observer.observe(event);
+  });
 }
 
-// === ФИЛТРИРАНЕ ПО КАТЕГОРИЯ ===
+// ===============================
+// FILTERS BY CATEGORY
+// ===============================
 function initTimelineFilters() {
-    // Създаваме филтър контейнер
-    createFilterButtons();
-    
-    // Event listeners за филтрите
-    const filterButtons = document.querySelectorAll('.timeline-filter-btn');
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const category = btn.dataset.category;
-            filterByCategory(category);
-            
-            // Update active state
-            filterButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        });
+  const buttons = document.querySelectorAll(".timeline-filter-btn");
+  if (!buttons.length) return;
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const category = btn.dataset.category;
+
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      filterByCategory(category);
     });
+  });
 }
 
-// === EXPAND/COLLAPSE СЪБИТИЯ (опционално) ===
+// ===============================
+// FILTER LOGIC
+// ===============================
+function filterByCategory(category) {
+  const events = document.querySelectorAll(".timeline-event");
+
+  events.forEach(event => {
+    const eventCategory = event.dataset.category;
+
+    if (category === "all" || eventCategory === category) {
+      event.style.display = "";
+      event.classList.remove("hidden");
+    } else {
+      event.style.display = "none";
+      event.classList.add("hidden");
+    }
+  });
+}
+
+// ===============================
+// EXPAND / COLLAPSE EVENTS
+// ===============================
 function initEventExpansion() {
-    const events = document.querySelectorAll('.event-content');
-    
-    events.forEach(event => {
-        event.addEventListener('click', () => {
-            event.classList.toggle('expanded');
-        });
+  const contents = document.querySelectorAll(".event-content");
+
+  contents.forEach(content => {
+    content.addEventListener("click", () => {
+      content.classList.toggle("expanded");
     });
+  });
 }

@@ -1,87 +1,106 @@
-// === THEMES FUNCTIONALITY ===
+// ===============================
+// THEMES FUNCTIONALITY (FIXED)
+// ===============================
 
-document.addEventListener('DOMContentLoaded', () => {
-    initThemeSearch();
-    initPeriodFilter();
+document.addEventListener("DOMContentLoaded", () => {
+  initThemeSearch();
+  initPeriodFilter();
 });
 
-// === ТЪРСЕНЕ НА ТЕМИ ===
+// ===============================
+// SEARCH
+// ===============================
 function initThemeSearch() {
-    const searchInput = document.getElementById('themeSearch');
-    if (!searchInput) return;
+  const searchInput = document.getElementById("themeSearch");
+  if (!searchInput) return;
 
-    searchInput.addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        filterThemes(searchTerm, getCurrentPeriod());
-    });
+  searchInput.addEventListener("input", () => {
+    filterThemes(
+      searchInput.value.toLowerCase(),
+      getCurrentPeriod()
+    );
+  });
 }
 
-// === ФИЛТЪР ПО ПЕРИОД ===
+// ===============================
+// PERIOD FILTER
+// ===============================
 function initPeriodFilter() {
-    const periodFilter = document.getElementById('periodFilter');
-    if (!periodFilter) return;
+  const periodFilter = document.getElementById("periodFilter");
+  if (!periodFilter) return;
 
-    periodFilter.addEventListener('change', (e) => {
-        const period = e.target.value;
-        const searchTerm = document.getElementById('themeSearch')?.value.toLowerCase() || '';
-        filterThemes(searchTerm, period);
-    });
+  periodFilter.addEventListener("change", () => {
+    const searchTerm =
+      document.getElementById("themeSearch")?.value.toLowerCase() || "";
+    filterThemes(searchTerm, periodFilter.value);
+  });
 }
 
-// === ГЛАВНА ФИЛТРИРАЩ ФУНКЦИЯ ===
+// ===============================
+// MAIN FILTER FUNCTION
+// ===============================
 function filterThemes(searchTerm, period) {
-    const themeCards = document.querySelectorAll('.theme-card');
-    let visibleCount = 0;
+  const themeCards = document.querySelectorAll(".theme-card");
+  let visibleCount = 0;
 
-    themeCards.forEach(card => {
-        const title = card.querySelector('.theme-title').textContent.toLowerCase();
-        const description = card.querySelector('.theme-description').textContent.toLowerCase();
-        const card = card.dataset.period || '';
+  themeCards.forEach(card => {
+    const title = card
+      .querySelector(".theme-title")
+      ?.textContent.toLowerCase() || "";
 
-        // Проверка за търсене
-        const matchesSearch = !searchTerm || 
-            title.includes(searchTerm) || 
-            description.includes(searchTerm);
+    const description = card
+      .querySelector(".theme-description")
+      ?.textContent.toLowerCase() || "";
 
-        // Проверка за период
-        const matchesPeriod = period === 'all' || 
-            cardPeriods.includes(period);
+    const cardPeriod = card.dataset.period || "";
 
-        // Показване/скриване
-        if (matchesSearch && matchesPeriod) {
-            card.style.display = '';
-            card.classList.remove('hidden');
-            visibleCount++;
-        } else {
-            card.style.display = 'none';
-            card.classList.add('hidden');
-        }
-    });
+    const matchesSearch =
+      !searchTerm ||
+      title.includes(searchTerm) ||
+      description.includes(searchTerm);
 
-    // Показване на "Няма резултати" ако няма намерени теми
-    showNoResults(visibleCount === 0);
-}
+    const matchesPeriod =
+      period === "all" || cardPeriod === period;
 
-// === ПОКАЗВАНЕ НА "НЯМА РЕЗУЛТАТИ" ===
-function showNoResults(show) {
-    let noResultsDiv = document.querySelector('.no-results');
-    
-    if (show && !noResultsDiv) {
-        const grid = document.querySelector('.themes-grid');
-        noResultsDiv = document.createElement('div');
-        noResultsDiv.className = 'no-results';
-        noResultsDiv.innerHTML = `
-            <h3>Няма намерени теми</h3>
-            <p>Опитайте с други ключови думи или филтри</p>
-        `;
-        grid.appendChild(noResultsDiv);
-    } else if (!show && noResultsDiv) {
-        noResultsDiv.remove();
+    if (matchesSearch && matchesPeriod) {
+      card.style.display = "";
+      card.classList.remove("hidden");
+      visibleCount++;
+    } else {
+      card.style.display = "none";
+      card.classList.add("hidden");
     }
+  });
+
+  showNoResults(visibleCount === 0);
 }
 
-// === HELPER ФУНКЦИЯ ===
+// ===============================
+// NO RESULTS MESSAGE
+// ===============================
+function showNoResults(show) {
+  let noResults = document.querySelector(".no-results");
+  const grid = document.querySelector(".themes-grid");
+
+  if (show) {
+    if (!noResults && grid) {
+      noResults = document.createElement("div");
+      noResults.className = "no-results";
+      noResults.innerHTML = `
+        <h3>Няма намерени теми</h3>
+        <p>Опитайте с други ключови думи</p>
+      `;
+      grid.appendChild(noResults);
+    }
+  } else {
+    if (noResults) noResults.remove();
+  }
+}
+
+// ===============================
+// HELPERS
+// ===============================
 function getCurrentPeriod() {
-    const periodFilter = document.getElementById('periodFilter');
-    return periodFilter ? periodFilter.value : 'all';
+  const periodFilter = document.getElementById("periodFilter");
+  return periodFilter ? periodFilter.value : "all";
 }

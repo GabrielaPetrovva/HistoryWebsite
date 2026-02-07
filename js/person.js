@@ -1,83 +1,71 @@
-// === PERSON PAGE FUNCTIONALITY ===
+import { db } from "./firebase.js";
+import {
+  collection,
+  getDocs,
+  query,
+  where
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-    initPersonAnimations();
-    initRelatedPersons();
-});
+const heroBg = document.getElementById("personHeroBg");
+const nameEl = document.getElementById("personName");
+const periodEl = document.getElementById("personPeriod");
+const datesEl = document.getElementById("personDates");
+const descEl = document.getElementById("personDescription");
 
-// === SCROLL ANIMATIONS ЗА СЕКЦИИ ===
-function initPersonAnimations() {
-    const observerOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -80px 0px'
-    };
+function formatDate(day, month, year) {
+  if (!day && !month && !year) return "";
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, observerOptions);
+  const d = day ? String(day).padStart(2, "0") : "";
+  const m = month ? String(month).padStart(2, "0") : "";
 
-    // Наблюдаваме всички article секции
-    document.querySelectorAll('.article-section').forEach(section => {
-        observer.observe(section);
-    });
+  if (year) {
+    if (d && m) return `${d}.${m}.${year} г.`;
+    if (m) return `${m}.${year} г.`;
+    if (d) return `${d}.${year} г.`;
+    return `${year} г.`;
+  }
 
-    // Наблюдаваме timeline items
-    document.querySelectorAll('.timeline-item').forEach(item => {
-        observer.observe(item);
-    });
-
-    // Наблюдаваме related cards
-    document.querySelectorAll('.related-card').forEach(card => {
-        observer.observe(card);
-    });
+  if (d && m) return `${d}.${m}`;
+  if (m) return `${m}`;
+  return `${d}`;
 }
 
-// === СВЪРЗАНИ ЛИЧНОСТИ НАВИГАЦИЯ ===
-function initRelatedPersons() {
-    const relatedCards = document.querySelectorAll('.related-card');
-    
-    relatedCards.forEach(card => {
-        card.addEventListener('click', () => {
-            // За сега просто redirect към person.html
-            // По-късно ще добавим динамично зареждане
-            window.location.href = 'person.html';
-        });
-
-        // Добавяме cursor pointer визуално
-        card.style.cursor = 'pointer';
-    });
+function getSlug() {
+  return new URLSearchParams(window.location.search).get("slug");
 }
 
-// === СПОДЕЛЯНЕ (ОПЦИОНАЛНО) ===
-function initShareButtons() {
-    const shareBtn = document.querySelector('.share-btn');
-    if (!shareBtn) return;
+async function loadPerson() {
+  const slug = getSlug();
+  if (!slug) return;
 
-    shareBtn.addEventListener('click', () => {
-        if (navigator.share) {
-            navigator.share({
-                title: document.querySelector('.person-title').textContent,
-                text: document.querySelector('.person-subtitle').textContent,
-                url: window.location.href
-            });
-        } else {
-            // Fallback - копиране на линк
-            navigator.clipboard.writeText(window.location.href);
-            alert('Линкът е копиран!');
-        }
-    });
+  const q = query(
+    collection(db, "persons"),
+    where("slug", "==", slug),
+    where("published", "==", true)
+  );
+
+  const snap = await getDocs(q);
+
+  if (snap.empty) {
+    nameEl.textContent = "Личността не е намерена";
+    return;
+  }
+
+  const p = snap.docs[0].data();
+
+  nameEl.textContent = p.name;
+  periodEl.textContent = p.period || "";
+  descEl.innerHTML = p.description || "";
+
+  const birthText = formatDate(p.birthDay, p.birthMonth, p.birthYear);
+  const deathText = formatDate(p.deathDay, p.deathMonth, p.deathYear);
+  if (birthText || deathText) {
+    datesEl.textContent = `${birthText || "?"} – ${deathText || "?"}`;
+  }
+
+  if (p.imageUrl) {
+    heroBg.style.backgroundImage = `url('${p.imageUrl}')`;
+  }
 }
 
-// === PRINT ФУНКЦИОНАЛНОСТ (ОПЦИОНАЛНО) ===
-function initPrintButton() {
-    const printBtn = document.querySelector('.print-btn');
-    if (!printBtn) return;
-
-    printBtn.addEventListener('click', () => {
-        window.print();
-    });
-}
+loadPerson();

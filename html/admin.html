@@ -1,257 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bg">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/admin.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админ панел</title>
+  <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="admin-nav">
-        <div class="admin-nav-container">
-            <a href="#" class="admin-logo">Административен панел</a>
-            <ul class="admin-nav-links">
-                <li><a href="#" class="active" data-view="dashboard">Табло</a></li>
-                <li><a href="#" data-view="articles">Статии</a></li>
-            </ul>
-            <button class="logout-btn">Изход</button>
-        </div>
-    </nav>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Dashboard View -->
-        <div id="dashboard-view" class="view">
-            <div class="page-header">
-                <h1 class="page-title">Табло</h1>
-                <p class="page-subtitle">Преглед на съдържанието</p>
-            </div>
+<nav class="admin-nav">
+  <div class="admin-nav-container">
+    <a href="#" class="admin-logo">Админ панел</a>
+  </div>
+</nav>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-label">Публикувани статии</div>
-                    <div class="stat-value">12</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Чернови</div>
-                    <div class="stat-value">3</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Исторически личности</div>
-                    <div class="stat-value">15</div>
-                </div>
-            </div>
+<main class="main-content">
 
-            <div class="section">
-                <div class="section-header">
-                    <h2 class="section-title">Последно редактирани</h2>
-                    <button class="btn-primary" onclick="showView('article-form')">
-                        <span>+</span>
-                        Нова статия
-                    </button>
-                </div>
+<!-- DASHBOARD -->
+<section id="dashboard-view" class="view">
 
-                <div class="articles-list">
-                    <div class="article-item">
-                        <div class="article-info">
-                            <div class="article-title">Златният век на книжовността</div>
-                            <div class="article-meta">
-                                <span class="status-badge status-draft">Чернова</span>
-                                <span>Цар Симеон I Велики</span>
-                                <span>18 януари 2026</span>
-                            </div>
-                        </div>
-                        <div class="article-actions">
-                            <button class="icon-btn" title="Редактиране">✎</button>
-                            <button class="icon-btn" title="Преглед">👁</button>
-                            <button class="icon-btn danger" title="Изтриване">🗑</button>
-                        </div>
-                    </div>
-
-                    <div class="article-item">
-                        <div class="article-info">
-                            <div class="article-title">Покръстването и културната революция</div>
-                            <div class="article-meta">
-                                <span class="status-badge status-published">Публикувана</span>
-                                <span>Княз Борис I</span>
-                                <span>19 януари 2026</span>
-                            </div>
-                        </div>
-                        <div class="article-actions">
-                            <button class="icon-btn" title="Редактиране">✎</button>
-                            <button class="icon-btn" title="Преглед">👁</button>
-                            <button class="icon-btn danger" title="Изтриване">🗑</button>
-                        </div>
-                    </div>
-
-                    <div class="article-item">
-                        <div class="article-info">
-                            <div class="article-title">Основаването на Българската държава</div>
-                            <div class="article-meta">
-                                <span class="status-badge status-published">Публикувана</span>
-                                <span>Хан Аспарух</span>
-                                <span>20 януари 2026</span>
-                            </div>
-                        </div>
-                        <div class="article-actions">
-                            <button class="icon-btn" title="Редактиране">✎</button>
-                            <button class="icon-btn" title="Преглед">👁</button>
-                            <button class="icon-btn danger" title="Изтриване">🗑</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Articles View -->
-        <div id="articles-view" class="view hidden">
-            <div class="page-header">
-                <h1 class="page-title">Статии</h1>
-                <p class="page-subtitle">Управление на статиите</p>
-            </div>
-
-            <div class="section">
-                <div class="section-header">
-                    <div class="filters">
-                        <button class="filter-btn active" data-filter="all">Всички (15)</button>
-                        <button class="filter-btn" data-filter="published">Публикувани (12)</button>
-                        <button class="filter-btn" data-filter="draft">Чернови (3)</button>
-                    </div>
-                    <button class="btn-primary" onclick="showView('article-form')">
-                        <span>+</span>
-                        Нова статия
-                    </button>
-                </div>
-
-                <div class="articles-list">
-                    <div class="article-item">
-                        <div class="article-info">
-                            <div class="article-title">Основаването на Българската държава</div>
-                            <div class="article-meta">
-                                <span class="status-badge status-published">Публикувана</span>
-                                <span>Хан Аспарух</span>
-                                <span>20 януари 2026</span>
-                            </div>
-                        </div>
-                        <div class="article-actions">
-                            <button class="icon-btn" title="Редактиране" onclick="showView('article-form')">✎</button>
-                            <button class="icon-btn" title="Преглед">👁</button>
-                            <button class="icon-btn danger" title="Изтриване" onclick="showDeleteModal()">🗑</button>
-                        </div>
-                    </div>
-
-                    <div class="article-item">
-                        <div class="article-info">
-                            <div class="article-title">Покръстването и културната революция</div>
-                            <div class="article-meta">
-                                <span class="status-badge status-published">Публикувана</span>
-                                <span>Княз Борис I</span>
-                                <span>19 януари 2026</span>
-                            </div>
-                        </div>
-                        <div class="article-actions">
-                            <button class="icon-btn" title="Редактиране">✎</button>
-                            <button class="icon-btn" title="Преглед">👁</button>
-                            <button class="icon-btn danger" title="Изтриване" onclick="showDeleteModal()">🗑</button>
-                        </div>
-                    </div>
-
-                    <div class="article-item">
-                        <div class="article-info">
-                            <div class="article-title">Златният век на книжовността</div>
-                            <div class="article-meta">
-                                <span class="status-badge status-draft">Чернова</span>
-                                <span>Цар Симеон I Велики</span>
-                                <span>18 януари 2026</span>
-                            </div>
-                        </div>
-                        <div class="article-actions">
-                            <button class="icon-btn" title="Редактиране">✎</button>
-                            <button class="icon-btn" title="Преглед">👁</button>
-                            <button class="icon-btn danger" title="Изтриване" onclick="showDeleteModal()">🗑</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Article Form View -->
-        <div id="article-form-view" class="view hidden">
-            <div class="page-header">
-                <h1 class="page-title">Нова статия</h1>
-                <p class="page-subtitle">Създайте нова статия за историческа личност</p>
-            </div>
-
-            <div class="section">
-                <form id="article-form">
-                    <div class="form-group">
-                        <label class="form-label required">Заглавие на статията</label>
-                        <input type="text" class="form-input" id="article-title" placeholder="Напр. Основаването на Българската държава">
-                        <div class="form-error hidden" id="title-error">Моля, въведете заглавие на статията</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Изображение за заглавка</label>
-                        <div class="image-upload-area" id="image-upload" onclick="document.getElementById('image-input').click()">
-                            <div class="upload-placeholder" id="upload-placeholder">
-                                <div class="upload-icon">📷</div>
-                                <p>Кликнете за да качите изображение</p>
-                                <p class="form-help">Препоръчителен размер: 800x280 пиксела</p>
-                            </div>
-                            <img id="image-preview" class="image-preview hidden" src="" alt="Преглед">
-                        </div>
-                        <input type="file" id="image-input" accept="image/*" style="display: none;">
-                        <p class="form-help">Изображението автоматично ще бъде оразмерено за заглавката</p>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label required">Историческа личност</label>
-                        <select class="form-input" id="article-figure">
-                            <option value="">Изберете личност...</option>
-                            <option value="asparuh">Хан Аспарух</option>
-                            <option value="boris">Княз Борис I (Михаил)</option>
-                            <option value="simeon">Цар Симеон I Велики</option>
-                            <option value="samuil">Цар Самуил</option>
-                            <option value="evtimii">Патриарх Евтимий Търновски</option>
-                            <option value="paisii">Паисий Хилендарски</option>
-                        </select>
-                        <div class="form-error hidden" id="figure-error">Моля, изберете историческа личност</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label required">Съдържание на статията</label>
-                        <textarea class="form-input" id="article-content" placeholder="Напишете текста на статията тук...
-
-Можете да използвате множество параграфи за по-добра четимост.
-
-Опишете събитията, контекста и значението на личността по достъпен и интересен начин."></textarea>
-                        <div class="form-error hidden" id="content-error">Моля, въведете съдържание на статията</div>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="button" class="btn-secondary" onclick="showView('articles')">Отказ</button>
-                        <button type="button" class="btn-secondary" onclick="saveDraft()">Запази като чернова</button>
-                        <button type="button" class="btn-primary" onclick="publishArticle()">Публикувай</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    <!-- Delete Confirmation Modal -->
-    <div class="modal-overlay" id="delete-modal">
-        <div class="modal">
-            <h2 class="modal-title">Потвърдете изтриването</h2>
-            <p class="modal-text">Сигурни ли сте, че искате да изтриете тази статия? Това действие не може да бъде отменено.</p>
-            <div class="modal-actions">
-                <button class="btn-secondary" onclick="hideDeleteModal()">Отказ</button>
-                <button class="btn-danger" onclick="confirmDelete()">Изтрий статията</button>
-            </div>
-        </div>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">Чернови</div>
+      <div class="stat-value" id="stat-drafts">0</div>
     </div>
+    <div class="stat-card">
+      <div class="stat-label">Публикувани статии</div>
+   <div class="stat-value" id="stat-persons">0</div></div>
+  </div>
 
-    <script src="../js/admin-storage.js"></script>
-    <script src="../js/admin-enhanced.js"></script>
+  <!-- PERSON FORM (НЕПИПАН) -->
+  <div class="section" id="person-form-section">
+    <h2 id="person-form-title">Добавяне на личност</h2>
 
+    <input id="person-name" class="form-input" placeholder="Име">
+    <input id="person-slug" class="form-input" placeholder="Slug (напр. asparuh)">
+    <input id="person-birth-date" class="form-input" placeholder="Роден (напр. 18.02.1978 или 1978)">
+    <input id="person-death-date" class="form-input" placeholder="Починал (напр. 19.07.1873 или 1873)">
+
+    <input id="person-image" class="form-input" placeholder="Image URL">
+    <input type="file" id="person-image-file" class="form-input" accept="image/*">
+
+    <img id="person-image-preview"
+         style="max-width:160px;display:none;margin:8px 0;border-radius:6px">
+
+    <textarea id="person-description" class="form-input" placeholder="Описание"></textarea>
+
+    <div class="form-actions">
+      <button class="btn-secondary" onclick="cancelPersonForm()">Отказ</button>
+      <button class="btn-primary" onclick="savePerson()">Запази</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Личности</h2>
+    <div class="articles-list" id="persons-list"></div>
+  </div>
+
+</section>
+
+<!-- ARTICLES LIST -->
+<section id="articles-view" class="view hidden">
+  <div class="section">
+  <div class="section-header">
+    <button class="btn-primary" onclick="openArticleForm()">+ Нова статия</button>
+  </div>
+  <div class="articles-list" id="articles-list"></div>
+  </div>
+</section>
+
+<!-- ARTICLE FORM -->
+<section id="article-form-view" class="view hidden">
+  <div class="section">
+
+  <input id="article-title" class="form-input" placeholder="Заглавие">
+
+  <!-- ✅ ДОБАВЕНО -->
+  <input id="article-slug" class="form-input" placeholder="Slug (напр. osnovavane-na-bulgaria)">
+
+  <select id="article-figure" class="form-input"></select>
+
+  <textarea id="article-content" class="form-input" placeholder="Съдържание"></textarea>
+
+  <div class="form-actions">
+    <button class="btn-secondary" onclick="cancelArticleForm()">Отказ</button>
+    <button class="btn-secondary" onclick="saveDraft()">Чернова</button>
+    <button class="btn-primary" onclick="publishArticle()">Публикувай</button>
+  </div>
+  </div>
+</section>
+
+</main>
+
+<!-- DELETE MODAL -->
+<div id="delete-modal" class="modal-overlay">
+  <div class="modal">
+    <h3 id="delete-text">Сигурен ли си?</h3>
+    <p class="modal-text">След изтриването не може да се възстанови.</p>
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeDelete()">Отказ</button>
+      <button class="btn-danger" id="confirm-delete-btn">Изтрий</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT PERSON MODAL -->
+<div id="edit-person-modal" class="modal-overlay">
+  <div class="modal modal-person">
+    <div class="modal-header">
+      <h3 class="modal-title">Редакция на личност</h3>
+      <button class="btn-icon modal-close" onclick="closePersonEditModal()">X</button>
+    </div>
+    <div id="edit-person-modal-content"></div>
+  </div>
+</div>
+
+<script type="module" src="../js/admin.js"></script>
 </body>
 </html>
