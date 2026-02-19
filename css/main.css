@@ -13,6 +13,15 @@ body {
     padding-top: 70px;
 }
 
+/* Глобално: изображенията и вградените елементи да не излизат извън екрана */
+img,
+video,
+iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* === NAVIGATION BAR === */
 nav {
     position: fixed;

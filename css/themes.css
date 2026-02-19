@@ -237,6 +237,12 @@
         font-size: 1rem;
     }
 
+    /* центрирано и запълнено фоново изображение на мобилни */
+    .page-header::before {
+        background-position: center center;
+        background-size: cover;
+    }
+
     .themes-grid {
         grid-template-columns: 1fr;
         gap: 25px;
@@ -288,5 +294,7 @@
 @media (max-width: 640px) {
     .themes-grid {
         grid-template-columns: 1fr;
+        padding: 0 16px;      /* по-малък страничен падинг за по-широки карти */
+        max-width: 100%;      /* картите заемат почти цялата ширина на екрана */
     }
 }

@@ -211,6 +211,12 @@
         font-size: 1.05rem;
     }
 
+    /* центрирано и запълнено фоново изображение на мобилни */
+    .timeline-hero::before {
+        background-position: center center;
+        background-size: cover;
+    }
+
     .visual-timeline {
         padding: 0 20px;
     }

@@ -264,4 +264,10 @@
     .catalog-container {
         padding: 0 20px 60px;
     }
+
+    /* центрирано и запълнено фоново изображение на мобилни */
+    .catalog-hero::before {
+        background-position: center center;
+        background-size: cover;
+    }
 }

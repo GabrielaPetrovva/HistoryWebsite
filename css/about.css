@@ -1,7 +1,7 @@
 .about-hero {
     position: relative;
     text-align: center;
-    padding: 120px 30px 60px;
+    padding: 120px 30px 240px;
 }
 
 .about-hero::before {
@@ -121,7 +121,7 @@
 
         @media (max-width: 768px) {
             .about-hero {
-                padding: 60px 20px 40px;
+                padding: 80px 40px 200px;
             }
 
             .about-hero h1 {
@@ -134,5 +134,12 @@
 
             .principles-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* на мобилни използваме отделна картинка istoria-mobile */
+            .about-hero::before {
+                background-image: url('../images/istoria.png');
+                background-position: center center;
+                background-size: cover;
             }
         }

@@ -15,7 +15,176 @@ let persons = [];
 let editingPersonId = null;
 let editingArticleId = null;
 
-/* ================= HELPERS ================= */
+/* ================= SMART FORMATTING HELPERS ================= */
+
+/**
+ * Интелигентно форматиране на текст в HTML
+ * Автоматично разпознава:
+ * - Подзаглавия (кратки редове, може би с главни букви или удебеление)
+ * - Параграфи (отделени с празни редове)
+ * - Списъци (започват с цифра, тире или булет)
+ */
+function smartFormatContent(text) {
+  if (!text || !text.trim()) return '';
+  
+  // Почистване на текста
+  let cleaned = text
+    .replace(/\r\n/g, '\n')  // Windows нови редове
+    .replace(/\r/g, '\n')    // Old Mac нови редове
+    .trim();
+  
+  // Разделяме на блокове (параграфи отделени с празни редове)
+  const blocks = cleaned.split(/\n\s*\n/);
+  
+  const htmlBlocks = blocks.map(block => {
+    const trimmed = block.trim();
+    if (!trimmed) return '';
+    
+    // Проверка дали е подзаглавие
+    if (isHeading(trimmed)) {
+      return formatAsHeading(trimmed);
+    }
+    
+    // Проверка дали е списък
+    if (isList(trimmed)) {
+      return formatAsList(trimmed);
+    }
+    
+    // Обикновен параграф
+    return formatAsParagraph(trimmed);
+  });
+  
+  return htmlBlocks.filter(Boolean).join('\n\n');
+}
+
+/**
+ * Проверява дали блок текст е подзаглавие
+ */
+function isHeading(text) {
+  const lines = text.split('\n');
+  
+  // Само един ред
+  if (lines.length > 1) return false;
+  
+  const line = text.trim();
+  
+  // Критерии за подзаглавие:
+  // 1. Къс текст (до 100 символа)
+  // 2. Няма точка в края ИЛИ започва с цифра и точка (1. Заглавие)
+  // 3. Може да е с ГЛАВНИ БУКВИ или да започва с главна буква
+  
+  if (line.length > 100) return false;
+  
+  // Започва с цифра и точка: "1. Заглавие" или "I. Заглавие"
+  if (/^[IVX0-9]+\.\s+/.test(line)) return true;
+  
+  // Започва с ## (Markdown стил)
+  if (line.startsWith('##')) return true;
+  
+  // Всички главни букви (поне 3 думи)
+  const words = line.replace(/[^а-яА-Я\s]/g, '').split(/\s+/).filter(Boolean);
+  const upperCaseWords = words.filter(w => w === w.toUpperCase() && w.length > 1);
+  if (upperCaseWords.length >= 2 && upperCaseWords.length === words.length) {
+    return true;
+  }
+  
+  // Къс текст БЕЗ точка в края (вероятно заглавие)
+  if (line.length <= 60 && !line.endsWith('.') && !line.endsWith(',')) {
+    // Проверка дали изглежда като заглавие (започва с главна буква)
+    if (/^[А-ЯA-Z]/.test(line)) {
+      return true;
+    }
+  }
+  
+  return false;
+}
+
+/**
+ * Форматира текст като подзаглавие
+ */
+function formatAsHeading(text) {
+  let cleaned = text
+    .replace(/^##\s*/, '')  // Премахва ## ако има
+    .replace(/^[IVX0-9]+\.\s*/, '')  // Премахва номерация
+    .trim();
+  
+  return `<h2 class="section-title">${cleaned}</h2>`;
+}
+
+/**
+ * Проверява дали блок текст е списък
+ */
+function isList(text) {
+  const lines = text.split('\n').filter(Boolean);
+  if (lines.length < 2) return false;
+  
+  // Проверка дали повечето редове започват с маркер за списък
+  const listLines = lines.filter(line => {
+    const trimmed = line.trim();
+    return /^[-•*]\s+/.test(trimmed) ||  // Булети: -, •, *
+           /^[0-9]+\.\s+/.test(trimmed);  // Номерирани: 1., 2., 3.
+  });
+  
+  return listLines.length >= lines.length * 0.7; // 70% от редовете са списък
+}
+
+/**
+ * Форматира като списък (ul или ol)
+ */
+function formatAsList(text) {
+  const lines = text.split('\n').filter(Boolean);
+  
+  // Проверка дали е номериран списък
+  const isOrdered = /^[0-9]+\.\s+/.test(lines[0].trim());
+  
+  const listItems = lines.map(line => {
+    let content = line
+      .replace(/^[-•*]\s+/, '')    // Премахва буллети
+      .replace(/^[0-9]+\.\s+/, '') // Премахва номерация
+      .trim();
+    return `  <li>${content}</li>`;
+  }).join('\n');
+  
+  if (isOrdered) {
+    return `<ol class="article-list">\n${listItems}\n</ol>`;
+  } else {
+    return `<ul class="article-list">\n${listItems}\n</ul>`;
+  }
+}
+
+/**
+ * Форматира като параграф
+ */
+function formatAsParagraph(text) {
+  // Заменяме единични нови редове с интервали
+  const cleaned = text.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+  return `<p class="article-text">${cleaned}</p>`;
+}
+
+/**
+ * Конвертира HTML обратно в обикновен текст за редактиране
+ */
+function htmlToPlainText(html) {
+  if (!html) return '';
+  
+  return html
+    .replace(/<h2[^>]*>/gi, '\n\n')
+    .replace(/<\/h2>/gi, '\n\n')
+    .replace(/<p[^>]*>/gi, '')
+    .replace(/<\/p>/gi, '\n\n')
+    .replace(/<li>/gi, '- ')
+    .replace(/<\/li>/gi, '\n')
+    .replace(/<\/?[uo]l[^>]*>/gi, '\n')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&quot;/gi, '"')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .trim();
+}
+
+/* ================= ORIGINAL HELPERS ================= */
 function slugify(text) {
   return text
     .toLowerCase()
@@ -443,20 +612,23 @@ async function saveArticle(published) {
   const title = document.getElementById("article-title").value.trim();
   const slugInput = document.getElementById("article-slug").value.trim();
   const figure = document.getElementById("article-figure").value;
-  const content = document.getElementById("article-content").value.trim();
+  const rawContent = document.getElementById("article-content").value.trim();
 
-  if (!title || !figure || !content) {
+  if (!title || !figure || !rawContent) {
     alert("Всички полета са задължителни");
     return;
   }
 
   const finalSlug = slugInput ? slugify(slugInput) : slugify(title);
+  
+  // 🔥 ИНТЕЛИГЕНТНО ФОРМАТИРАНЕ - автоматично разпознава структурата
+  const formattedContent = smartFormatContent(rawContent);
 
   const data = {
     title,
     slug: finalSlug,
     figure,
-    content,
+    content: formattedContent,
     published,
     updatedAt: Timestamp.now()
   };
@@ -485,7 +657,9 @@ window.editArticle = async function (id) {
   document.getElementById("article-title").value = a.title;
   document.getElementById("article-slug").value = a.slug || "";
   document.getElementById("article-figure").value = a.figure;
-  document.getElementById("article-content").value = a.content;
+  
+  // Конвертираме HTML обратно в обикновен текст за textarea
+  document.getElementById("article-content").value = htmlToPlainText(a.content);
 
   window.openArticleEditModal();
 };

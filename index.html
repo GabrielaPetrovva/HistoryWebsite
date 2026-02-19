@@ -54,8 +54,8 @@
 
         <article class="cta-card" onclick="location.href='html/catalog.html'">
             <div class="cta-icon">👥</div>
-            <h3>Опознай личностите</h3>
-            <p>От Аспарух до Левски</p>
+            <h3>Личности</h3>
+            <p>От създаването на България до днес</p>
             <a href="html/catalog.html" class="cta-button">Разгледай</a>
         </article>
 
@@ -70,7 +70,7 @@
             <div class="cta-icon">💡</div>
             <h3>Подходът</h3>
             <p>Как разказваме история</p>
-            <a href="html/about.html" class="cta-button">Научи повече</a>
+            <a href="html/about.html" class="cta-button">За нас</a>
         </article>
 
     </div>
@@ -79,27 +79,65 @@
     <section class="featured-highlight" id="featuredPerson">
         <!-- index.js пълни това -->
     </section>
-
-    <!-- LATEST ARTICLES (index.js) -->
-    <section class="latest-articles">
-        <h3>Последни статии</h3>
-        <div class="articles-grid" id="latestArticles">
-            <!-- index.js пълни това -->
-        </div>
-    </section>
-
 </div>
 
 <!-- FOOTER -->
 <footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>За проекта</h3>
+            <p>Образователна платформа, посветена на българската история — разказана чрез хората, които я създадоха. Без учебникарска тежест, с разказвателна дълбочина.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Изследвайте</h3>
+            <ul class="footer-links">
+                <li><a href="html/catalog.html">Личности</a></li>
+                <li><a href="html/themes.html">Теми</a></li>
+                <li><a href="html/timeline.html">Хронология</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Информация</h3>
+            <ul class="footer-links">
+                <li><a href="html/about.html">За нас</a></li>
+                <li><a href="html/contact.html">Контакти</a></li>
+                <li><a href="html/methodology.html">Методология</a></li>
+                <li><a href="html/sources.html">Източници</a></li>
+            </ul>
+        </div>
+    </div>
     <div class="footer-bottom">
-        <p>&copy; 2026 Живата история на България.</p>
+        <p>&copy; 2026 Живата история на България. Всички права запазени.</p>
     </div>
 </footer>
 
 <!-- JS -->
 <script src="./js/main.js"></script>
 <script type="module" src="./js/index.js"></script>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCwo-VAlGM-InMaFgdYdxpJZoZO20qdHBo",
+    authDomain: "serve-software.firebaseapp.com",
+    projectId: "serve-software",
+    storageBucket: "serve-software.firebasestorage.app",
+    messagingSenderId: "949748606008",
+    appId: "1:949748606008:web:a1c7f6ed378760227432cd",
+    measurementId: "G-EV13D9E8L9"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 
 </body>
 </html>

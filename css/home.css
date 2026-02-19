@@ -1,7 +1,7 @@
 /* === HERO SECTION === */
 .hero-section {
     position: relative;
-    min-height: 600px;
+    min-height: 100vh; /* заема височината на екрана */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -147,7 +147,8 @@ header {
     cursor: pointer;
     opacity: 0;
     transform: translateY(20px);
-    width: rem;
+    display: flex;              /* ДОБАВЕНО */
+    flex-direction: column;     /* ДОБАВЕНО */
 }
 
 .cta-card.visible {
@@ -189,6 +190,8 @@ header {
     border-radius: 6px;
     font-weight: 500;
     transition: all 0.3s ease;
+    margin-top: auto;           /* ДОБАВЕНО */
+    align-self: center;         /* ДОБАВЕНО — запазва центрирането */
 }
 
 .cta-button:hover {
@@ -301,7 +304,7 @@ header {
     }
 
     .hero-section {
-        min-height: 400px;
+        min-height: 100vh; /* и на мобилни да е цял екран */
     }
 
     header {

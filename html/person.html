@@ -10,11 +10,21 @@
 </head>
 <body>
 
-<nav>
-  <div class="nav-container">
-    <a href="../index.html" class="nav-logo">Историята отблизо</a>
-  </div>
-</nav>
+<!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Историята отблизо</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Начало</a></li>
+                <li><a href="catalog.html">Личности</a></li>
+                <li><a href="themes.html">Теми</a></li>
+                <li><a href="timeline.html">Хронология</a></li>
+                <li><a href="about.html">За нас</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="menuToggle">☰</button>
+        </div>
+    </nav>
+
 
 <section class="person-hero">
   <div class="person-hero-background" id="personHeroBg"></div>
@@ -29,12 +39,35 @@
   <div id="personDescription"></div>
 </article>
 
+<!-- FOOTER -->
 <footer>
-  <div class="footer-bottom">
-    <p>&copy; 2026 Живата история на България</p>
-  </div>
-</footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>За проекта</h3>
+                <p>Образователна платформа, посветена на българската история — разказана чрез хората, които я създадоха.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Изследвайте</h3>
+                <ul class="footer-links">
+                    <li><a href="catalog.html">Личности</a></li>
+                    <li><a href="themes.html">Теми</a></li>
+                    <li><a href="timeline.html">Хронология</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Информация</h3>
+                <ul class="footer-links">
+                    <li><a href="about.html">За нас</a></li>
+                    <li><a href="#">Контакти</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Живата история на България. Всички права запазени.</p>
+        </div>
+    </footer>
 
+<script src="../js/main.js"></script>
 <script type="module" src="../js/person.js"></script>
 </body>
 </html>

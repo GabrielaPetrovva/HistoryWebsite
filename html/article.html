@@ -2,16 +2,63 @@
 <html lang="bg">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Статия</title>
   <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">Историята отблизо</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">Начало</a></li>
+        <li><a href="catalog.html">Личности</a></li>
+        <li><a href="themes.html">Теми</a></li>
+        <li><a href="timeline.html">Хронология</a></li>
+        <li><a href="about.html">За нас</a></li>
+      </ul>
+      <button class="mobile-menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </nav>
 
   <main style="max-width:800px;margin:40px auto;padding:0 16px">
     <h1 id="article-title"></h1>
     <div id="article-content"></div>
   </main>
 
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>За проекта</h3>
+        <p>Образователна платформа, посветена на българската история — разказана чрез хората, които я създадоха. Без учебникарска тежест, с разказвателна дълбочина.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Изследвайте</h3>
+        <ul class="footer-links">
+          <li><a href="catalog.html">Личности</a></li>
+          <li><a href="themes.html">Теми</a></li>
+          <li><a href="timeline.html">Хронология</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Информация</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">За нас</a></li>
+          <li><a href="contact.html">Контакти</a></li>
+          <li><a href="methodology.html">Методология</a></li>
+          <li><a href="sources.html">Източници</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Живата история на България. Всички права запазени.</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
   <script type="module" src="../js/article.js"></script>
 </body>
 </html>
