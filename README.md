@@ -2,7 +2,7 @@
 
 Образователна уеб платформа, посветена на българската история — разказана чрез хората, които я създадоха. Без учебникарска тежест, с разказвателна дълбочина.
 
- **[Live Demo](#)** — [_](https://istoriataotblizo-2abd6.web.app/index.html)
+ **[Live Demo](#)** — [Istoriataotblizo](https://istoriataotblizo-2abd6.web.app/index.html)
 
 ---
 
@@ -61,9 +61,9 @@
 
 ## Стартиране локално
 
-Изтегли репото като ZIP от бутона Code → Download ZIP
-Разархивирай файловете
-Отвори index.html в браузър
+1. Изтегли репото като ZIP от бутона Code → Download ZIP
+2. Разархивирай файловете
+3. Отвори index.html в браузър
 
 ---
 
